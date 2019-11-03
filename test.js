@@ -6,7 +6,7 @@ var s = function( p ) { // p could be any variable name
   let sliderD;
   let value;
   let d;
-  var sc = 900;
+  var sc = 700;
 
 
 
@@ -37,7 +37,7 @@ var s = function( p ) { // p could be any variable name
     // text near slider
     p.text('k - randomness factor', 50, sc-110);
     p.text('dimention', 50, sc-60);
-    p.text('0', 30, sc-90);
+    p.text('1', 30, sc-90);
     p.text('30',660, sc-90);
     p.text('2',30, sc-20);
     //p.text('2', 85, sc-20);
