@@ -1,12 +1,18 @@
 var s = function( p ) { // p could be any variable name
   var x = 100; 
   var y = 100;
+  let slider;
+
   p.setup = function() {
     p.createCanvas(700, 700);
+    slider = p.createSlider(0, 255, 100);
+    slider.position(50, 750);
+    slider.style('width', '600px');
   };
 
   p.draw = function() {
-    p.background(0);
+    var value = slider.value();
+    p.background(value);
     p.fill(255);
     p.rect(x,y,50,50);
   };
