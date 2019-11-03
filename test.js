@@ -3,22 +3,27 @@ var s = function( p ) { // p could be any variable name
   var x = 100; 
   var y = 100;
   let slider;
+  let sliderD;
   let value;
+  let d;
 
 
 
   p.setup = function() {
     //IF CHANGE, JUST VALUES INSIDE
     p.createCanvas(700, 700);
-    slider = p.createSlider(0, 30, 100);
-    slider.position(50, 750);
+    slider = p.createSlider(1, 30, 100);
+    sliderD = p.createSlider(1, 3, 70);
+    slider.position(50, 600);
+    sliderD.position(50,650);
+    sliderD.style('width', '100px')
     slider.style('width', '600px');
   };
 
   p.draw = function() {
     //DO NOT CHANGE
     value = slider.value();
-    
+    d = sliderD.value();
     //TODO
     p.background(value);
     p.fill(255);
@@ -27,7 +32,7 @@ var s = function( p ) { // p could be any variable name
 
     //DO NOT CHANGE
     //emits: gives the 'value' of the slider to python
-    socket.emit("message", value);
+    socket.emit("hi", value, d);
     //'data' contains info from python
     socket.on("message", function(data) {
     //console.log(1.32e3);
@@ -42,8 +47,10 @@ var s = function( p ) { // p could be any variable name
       eigenvector.push(parseFloat(entry_str))
       index = pos+1;
     }
-    console.log(eigenvector)
+    // console.log(eigenvector)
+
     });
+
   };
 };
 

@@ -37,12 +37,13 @@ async def test(request):
 # If we wanted to create a new websocket endpoint,
 # use this decorator, passing in the name of the
 # event we wish to listen out for
-@sio.on('message')
-async def print_message(sid, message):
+@sio.on('hi')
+async def print_message(sid, message, d_JS):
     k = message
+    d = d_JS
     messageToJS = load_eigenvector()
-    print()
-    print(messageToJS)
+    # print()
+    # print(messageToJS)
     # When we receive a new event of type
     # 'message' through a socket.io connection
     # we print the socket ID and the message
@@ -51,7 +52,9 @@ async def print_message(sid, message):
     await sio.emit('message', messageToJS) 
     # notice it has to be of type 'message' and then pass the 
     # value to send to html doc 
-
+# @sio.on('d')
+# async def get_d_val(sid, message):
+    # d = message
 # We bind our aiohttp endpoint to our app
 # router
 app.router.add_get('/', index)
