@@ -2,8 +2,19 @@ from aiohttp import web
 import socketio
 import numpy as np
 
-k = 0
+k = 1
 d = 2
+
+def load_eigenvector():
+    vec_path = "eigenvectors/eigen_k=" + str(k) + ",d=" + str(d) + ".npy"
+    eigenvector_np = np.load(vec_path)
+    eigenvector_str = ""
+    for x in np.nditer(eigenvector_np):
+        eigenvector_str += str(x)  + " "
+
+    # print()
+    # print(eigenvector_str)
+    return eigenvector_str
 
 # creates a new Async Socket IO Server
 sio = socketio.AsyncServer(cors_allowed_origins="*")
@@ -30,15 +41,15 @@ async def test(request):
 async def print_message(sid, message):
     k = message
     messageToJS = load_eigenvector()
-
+    #print(messageToJS)
     # When we receive a new event of type
     # 'message' through a socket.io connection
     # we print the socket ID and the message
-    print("Socket ID: " , sid)
-    print(message) #message is the value sent from the HTML
+    # print("Socket ID: " , sid)
+    # print(message) #message is the value sent from the HTML
     await sio.emit('message', messageToJS) 
     # notice it has to be of type 'message' and then pass the 
-    # value to send to html doc
+    # value to send to html doc 
 
 # We bind our aiohttp endpoint to our app
 # router
@@ -50,8 +61,4 @@ app.router.add_get('/test.js', test)
 if __name__ == '__main__':
     web.run_app(app)
 
-def load_eigenvector():
-    vec_path = "eigenvectors/eigen_k=" + str(k) + "d=" + str(d)
-    eigenvector = np.load(vec_path)
-    return eigenvector
 

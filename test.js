@@ -1,3 +1,4 @@
+
 var s = function( p ) { // p could be any variable name
   var x = 100; 
   var y = 100;
@@ -28,7 +29,8 @@ var s = function( p ) { // p could be any variable name
     socket.emit("message", value);
     //'data' contains info from python
     socket.on("message", function(data) {
-    console.log(data);
+    // console.log(data);
+    });
   };
 };
 
