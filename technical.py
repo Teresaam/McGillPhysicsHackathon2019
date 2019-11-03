@@ -1,8 +1,7 @@
 import numpy as np
 
-d = 2
-l = 50
-k = 25
+d = 3
+l = 15
 
 def find_neighbours(p):
   neighbours = []
@@ -40,14 +39,14 @@ def get_index(x):
 
 def get_lattice_point(i):
   x = np.zeros(d)
-  k=i
+  m = i
   for j in range(d):
-    x[d-1-j] = k // (l**(d-1-j))
-    k = k % l**(d-1-j)
+    x[d-1-j] = m // (l**(d-1-j))
+    m = m % l**(d-1-j)
   return x
 
 
-def construct_hamiltonian():
+def construct_hamiltonian(k):
   rand_array = k*(np.random.rand((l**d))-1/2*np.ones(l**d));
   h1 = np.diag(rand_array)
   h2 = np.zeros((l**d,l**d))
@@ -64,13 +63,14 @@ def construct_hamiltonian():
 def get_eigenstate(ham):
   values, vectors = np.linalg.eig(ham)
   modulus = np.square(np.absolute(vectors))
+  res = np.where(values == np.amax(values))
+  eig = modulus[:,res]
+  return eig
 
-  return modulus[:,0]
-  
-ham = construct_hamiltonian()
-eigen = get_eigenstate(ham)
-
-save_str = "eigenvectors/eigen_k=" + str(k) + ",d=" + str(d)
-np.save(save_str,eigen)
-#np.save(eigen)
+for i in range(30):
+    k = i + 1
+    h = construct_hamiltonian(k)
+    eigenstate = get_eigenstate(h)
+    save_str = "eigenvectors/eigen_k=" + str(k) + ",d=" + str(d)
+    np.save(save_str,eigenstate)
 
