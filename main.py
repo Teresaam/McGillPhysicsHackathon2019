@@ -1,7 +1,6 @@
 from aiohttp import web
 import socketio
 
-
 # creates a new Async Socket IO Server
 sio = socketio.AsyncServer(cors_allowed_origins="*")
 # Creates a new Aiohttp Web Application
@@ -30,7 +29,7 @@ async def print_message(sid, message):
     # we print the socket ID and the message
     print("Socket ID: " , sid)
     print(message) #message is the value sent from the HTML
-    await sio.emit('message', "Hello I am talking you back") 
+    await sio.emit('message', "you are getting something from py") 
     # notice it has to be of type 'message' and then pass the 
     # value to send to html doc 
 

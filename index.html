@@ -17,26 +17,22 @@
   </head>
   <body>
     
-    <button onClick="sendMsg()">Hit Me</button>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     
     <script>
       const socket = io("http://localhost:8080");
 
-      function sendMsg() {
-        socket.emit("message", "HELLO WORLD");
-        console.log("hello");
-      }
-
-      socket.on("message", function(data) {
-        document.getElementById('output').innerHTML = data;
-        console.log(data);
+      //this is getting the value from python to HTML
+      // socket.on("message", function(data) {
+      //   document.getElementById('output').innerHTML = data;
+      //   console.log(data);
 
       });
 
     </script>
     <h1 id="output"> hhhhiiiiii </h1>
+    
+    
     
   </body>
 </html>

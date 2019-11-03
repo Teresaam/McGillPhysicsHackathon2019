@@ -2,21 +2,37 @@ var s = function( p ) { // p could be any variable name
   var x = 100; 
   var y = 100;
   let slider;
+  let value;
+
 
   p.setup = function() {
+    //IF CHANGE, JUST VALUES INSIDE
     p.createCanvas(700, 700);
-    slider = p.createSlider(0, 255, 100);
+    slider = p.createSlider(0, 30, 100);
     slider.position(50, 750);
     slider.style('width', '600px');
   };
 
   p.draw = function() {
-    var value = slider.value();
+    //DO NOT CHANGE
+    value = slider.value();
+    
+    //TODO
     p.background(value);
     p.fill(255);
     p.rect(x,y,50,50);
+    //END TODO
+
+    //DO NOT CHANGE
+    //emits: gives the 'value' of the slider to python
+    socket.emit("message", value);
+    //'data' contains info from python
+    socket.on("message", function(data) {
+    console.log(data);
   };
 };
+
+
 var myp5 = new p5(s, 'c1');
 
 // Sketch Two
