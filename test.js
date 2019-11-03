@@ -15,7 +15,7 @@ var s = function( p ) { // p could be any variable name
     
     p.createCanvas(sc, sc);
     slider = p.createSlider(1, 30, 100);
-    sliderD = p.createSlider(1, 3, 70);
+    sliderD = p.createSlider(2, 3, 70);
     slider.position(50, sc-100);
     sliderD.position(50,sc-50);
     sliderD.style('width', '100px')
@@ -39,8 +39,8 @@ var s = function( p ) { // p could be any variable name
     p.text('dimention', 50, sc-60);
     p.text('0', 30, sc-90);
     p.text('30',660, sc-90);
-    p.text('1',30, sc-20);
-    p.text('2', 85, sc-20);
+    p.text('2',30, sc-20);
+    //p.text('2', 85, sc-20);
     p.text('3', 150, sc-20);
 
     //DO NOT CHANGE
