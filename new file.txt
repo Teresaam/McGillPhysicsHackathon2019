@@ -1,0 +1,30 @@
+// print the eigenvector in the console
+    console.log(eigenvector);
+
+    var numPoints = 50;
+
+    // convert the oned array to twod array
+    var eigvec2d = new Array(numPoints);
+    for (let j=0; j<numPoints; j++){
+      eigvec2d[j] = new Array(numPoints);
+      for (let k=0; k<numPoints; k++){
+        eigvec2d[j][k] = eigenvector[j*numPoints+k];
+      }
+    }
+
+    //for (let i=0; i < eigenvectors.length; i++){
+    for (let j=0; j < eigvec2d.length; j++){
+      for (let k=0; k < eigvec2d[j].length; k++){
+        // if it's bigger than zero plot a circle centered around that region in some color
+        if (eigvec2d[j][k] !=0){
+          var r = eigvec2d[j][k]*12;// some random scaling factor
+          var c = '#00FFFF';//getColor(i);
+          p.fill(p.color(c));
+          p.stroke(p.color(c));
+          p.circle(p.int(j * 700 / numPoints), p.int(k * 700 / numPoints), 3500 * r / numPoints);
+        }
+      }
+    }
+    //}
+
+

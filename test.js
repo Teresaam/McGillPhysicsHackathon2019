@@ -18,6 +18,8 @@ var s = function( p ) { // p could be any variable name
     sliderD.position(50,650);
     sliderD.style('width', '100px')
     slider.style('width', '600px');
+    //p.frameRate(1);
+    p.frameRate(0.5);
   };
 
   p.draw = function() {
@@ -26,8 +28,8 @@ var s = function( p ) { // p could be any variable name
     d = sliderD.value();
     //TODO
     p.background(value);
-    p.fill(255);
-    p.rect(x,y,50,50);
+    //p.fill(255);
+    //p.rect(x,y,50,50);
     //END TODO
 
     //DO NOT CHANGE
@@ -47,7 +49,41 @@ var s = function( p ) { // p could be any variable name
       eigenvector.push(parseFloat(entry_str))
       index = pos+1;
     }
-    // console.log(eigenvector)
+    /////////////////
+    // print the eigenvector in the console
+    console.log(eigenvector);
+
+    if (d==2){
+      var numPoints = 50;
+    } else if (d==1){
+      var numPoints = 50;
+    } else if (d==3){
+      var numPoints = 15;
+    }
+
+    // convert the oned array to twod array
+    var eigvec2d = new Array(numPoints);
+    for (let j=0; j<numPoints; j++){
+      eigvec2d[j] = new Array(numPoints);
+      for (let k=0; k<numPoints; k++){
+        eigvec2d[j][k] = eigenvector[j*numPoints+k];
+      }
+    }
+
+    //for (let i=0; i < eigenvectors.length; i++){
+    for (let j=0; j < eigvec2d.length; j++){
+      for (let k=0; k < eigvec2d[j].length; k++){
+        // if it's bigger than zero plot a circle centered around that region in some color
+        if (eigvec2d[j][k] > 1.0/2500){
+          var r = eigvec2d[j][k]*12;// some random scaling factor
+          var c = '#00FFFF';//getColor(i);
+          p.fill(p.color(c));
+          p.stroke(p.color(c));
+          p.circle(p.int(j * 700 / numPoints), p.int(k * 700 / numPoints), 3500 * r / numPoints);
+        }
+      }
+    }
+    //}
 
     });
 
