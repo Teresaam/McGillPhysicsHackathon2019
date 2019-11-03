@@ -1,9 +1,8 @@
 import numpy as np
-import scipy as sp
 
 d = 2
-l=5
-k=100
+l = 50
+k = 25
 
 def find_neighbours(p):
   neighbours = []
@@ -62,9 +61,16 @@ def construct_hamiltonian():
 
   return np.subtract(h1,h2)
 
-def get_eigenstates(ham):
+def get_eigenstate(ham):
   values, vectors = np.linalg.eig(ham)
   modulus = np.square(np.absolute(vectors))
+
+  return modulus[:,0]
   
-  return modulus
+ham = construct_hamiltonian()
+eigen = get_eigenstate(ham)
+
+save_str = "eigenvectors/eigen_k=" + str(k) + ",d=" + str(d)
+np.save(save_str,eigen)
+#np.save(eigen)
 
