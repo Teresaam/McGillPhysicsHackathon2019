@@ -2,10 +2,7 @@ from aiohttp import web
 import socketio
 import numpy as np
 
-k = 1
-d = 2
-
-def load_eigenvector():
+def load_eigenvector(k,d):
     vec_path = "eigenvectors/eigen_k=" + str(k) + ",d=" + str(d) + ".npy"
     eigenvector_np = np.load(vec_path)
     eigenvector_str = ""
@@ -41,7 +38,12 @@ async def test(request):
 async def print_message(sid, message, d_JS):
     k = message
     d = d_JS
-    messageToJS = load_eigenvector()
+    # print(k)
+    # print(d)
+    messageToJS = load_eigenvector(k,d)
+    # print()
+    # print(messageToJS)
+
     # print()
     # print(messageToJS)
     # When we receive a new event of type
