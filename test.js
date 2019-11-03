@@ -6,20 +6,22 @@ var s = function( p ) { // p could be any variable name
   let sliderD;
   let value;
   let d;
+  var sc = 900;
 
 
 
   p.setup = function() {
     //IF CHANGE, JUST VALUES INSIDE
-    p.createCanvas(700, 700);
+    
+    p.createCanvas(sc, sc);
     slider = p.createSlider(1, 30, 100);
     sliderD = p.createSlider(1, 3, 70);
-    slider.position(50, 600);
-    sliderD.position(50,650);
+    slider.position(50, sc-100);
+    sliderD.position(50,sc-50);
     sliderD.style('width', '100px')
     slider.style('width', '600px');
-    //p.frameRate(1);
-    p.noLoop();
+    //p.noLoop();
+    p.frameRate(0.3);
   };
 
   p.draw = function() {
@@ -27,10 +29,19 @@ var s = function( p ) { // p could be any variable name
     value = slider.value();
     d = sliderD.value();
     //TODO
-    p.background(value);
+    p.background(p.color(255, 229, 204));
     //p.fill(255);
     //p.rect(x,y,50,50);
     //END TODO
+
+    // text near slider
+    p.text('k - randomness factor', 50, sc-110);
+    p.text('dimention', 50, sc-60);
+    p.text('0', 30, sc-90);
+    p.text('30',660, sc-90);
+    p.text('1',30, sc-20);
+    p.text('2', 85, sc-20);
+    p.text('3', 150, sc-20);
 
     //DO NOT CHANGE
     //emits: gives the 'value' of the slider to python
@@ -51,7 +62,7 @@ var s = function( p ) { // p could be any variable name
     }
     /////////////////
     // print the eigenvector in the console
-    console.log(eigenvector);
+    //console.log(eigenvector);
 
     var numPoints = 50;
 
@@ -69,11 +80,12 @@ var s = function( p ) { // p could be any variable name
       for (let k=0; k < eigvec2d[j].length; k++){
         // if it's bigger than zero plot a circle centered around that region in some color
         if (eigvec2d[j][k] > 1.0/2500){
-          var r = eigvec2d[j][k]*12;// some random scaling factor
+          var r = eigvec2d[j][k]*3.5;// some random scaling factor
           var c = '#00FFFF';//getColor(i);
-          p.fill(p.color(c));
-          p.stroke(p.color(c));
-          p.circle(p.int(j * 700 / numPoints), p.int(k * 700 / numPoints), 3500 * r / numPoints);
+          c = p.color(150,p.int(value*255./30),150);
+          p.fill(c);
+          p.stroke(p.color(0,0,0));
+          p.circle(p.int(j * sc / numPoints), p.int(k * sc / numPoints), 3500 * r / numPoints);
         }
       }
     }
@@ -87,6 +99,7 @@ var s = function( p ) { // p could be any variable name
 
 var myp5 = new p5(s, 'c1');
 
+/*
 // Sketch Two
 var t = function( p ) { 
   var x = 100.0; 
@@ -94,6 +107,7 @@ var t = function( p ) {
   var speed = 2.5; 
   p.setup = function() {
     p.createCanvas(700, 700);
+    p.noLoop();
   };
 
   p.draw = function() {
@@ -108,3 +122,4 @@ var t = function( p ) {
   };
 };
 var myp5 = new p5(t, 'c2');
+*/
