@@ -1,6 +1,3 @@
-#!pip install python-socketio
-#!pip install aiohttp
-
 from aiohttp import web
 import socketio
 

@@ -1,25 +1,36 @@
-const s = ( sketch ) => {
-
-  let x = 100;
-  let y = 100;
-
-
-  //This is the set up function
-  sketch.setup = () => {
-    sketch.createCanvas(400, 400);
+var s = function( p ) { // p could be any variable name
+  var x = 100; 
+  var y = 100;
+  p.setup = function() {
+    p.createCanvas(700, 700);
   };
 
-
-  //this is the draw function
-  sketch.draw = () => {
-    sketch.background(250);
-    //TODO below
-    sketch.ellipse(50,50, 150,50);
-    sketch.circle(150, 150, 50, 50);
-    //END TODO
+  p.draw = function() {
+    p.background(0);
+    p.fill(255);
+    p.rect(x,y,50,50);
   };
 };
+var myp5 = new p5(s, 'c1');
 
+// Sketch Two
+var t = function( p ) { 
+  var x = 100.0; 
+  var y = 100; 
+  var speed = 2.5; 
+  p.setup = function() {
+    p.createCanvas(700, 700);
+  };
 
-//DO NOT ERASE OR MODIFY
-let myp5 = new p5(s);
+  p.draw = function() {
+    p.background(100);
+    p.fill(1);
+    x += speed; 
+    if(x > p.width){
+      x = 0; 
+    }
+    p.ellipse(x,y,50,50);
+
+  };
+};
+var myp5 = new p5(t, 'c2');
