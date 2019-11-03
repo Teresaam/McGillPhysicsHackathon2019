@@ -19,7 +19,7 @@ var s = function( p ) { // p could be any variable name
     sliderD.style('width', '100px')
     slider.style('width', '600px');
     //p.frameRate(1);
-    p.frameRate(0.5);
+    p.noLoop();
   };
 
   p.draw = function() {
@@ -53,13 +53,7 @@ var s = function( p ) { // p could be any variable name
     // print the eigenvector in the console
     console.log(eigenvector);
 
-    if (d==2){
-      var numPoints = 50;
-    } else if (d==1){
-      var numPoints = 50;
-    } else if (d==3){
-      var numPoints = 15;
-    }
+    var numPoints = 50;
 
     // convert the oned array to twod array
     var eigvec2d = new Array(numPoints);
