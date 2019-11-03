@@ -6,6 +6,7 @@ var s = function( p ) { // p could be any variable name
   let value;
 
 
+
   p.setup = function() {
     //IF CHANGE, JUST VALUES INSIDE
     p.createCanvas(700, 700);
@@ -29,7 +30,19 @@ var s = function( p ) { // p could be any variable name
     socket.emit("message", value);
     //'data' contains info from python
     socket.on("message", function(data) {
-    // console.log(data);
+    //console.log(1.32e3);
+    var index = 0;
+    var pos = 0;
+    var entry_str = "";
+    var eigenvector = new Array();
+    //while not end of string
+    for (var i = index; i < data.length ; i++) {
+      pos = data.indexOf(" ", index);//pos = position of first occurrence of " "
+      entry_str = data.slice(index,pos);
+      eigenvector.push(parseFloat(entry_str))
+      index = pos+1;
+    }
+    console.log(eigenvector)
     });
   };
 };

@@ -41,7 +41,8 @@ async def test(request):
 async def print_message(sid, message):
     k = message
     messageToJS = load_eigenvector()
-    #print(messageToJS)
+    print()
+    print(messageToJS)
     # When we receive a new event of type
     # 'message' through a socket.io connection
     # we print the socket ID and the message
