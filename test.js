@@ -14,8 +14,9 @@ const s = ( sketch ) => {
   sketch.draw = () => {
     sketch.background(250);
     //TODO below
-	sketch.ellipse(50,50, 50,50);
-	//END TODO
+    sketch.ellipse(50,50, 150,50);
+    sketch.circle(150, 150, 50, 50);
+    //END TODO
   };
 };
 
